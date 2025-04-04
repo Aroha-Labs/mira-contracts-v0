@@ -40,7 +40,7 @@ The Inference Tracking System is a blockchain-based solution designed to record 
 - Provide admin functionality for management
 - Provide query functions for basic statistical analysis
 
-### StakingVault Smart Contract
+#### StakingVault Smart Contract
 **Purpose:** Implement a secure, initialization-protected ERC-4626 staking vault for token assets.
 
 **Key Features:**
