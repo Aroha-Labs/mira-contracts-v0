@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 /**
  * @title MockERC20
- * @dev A simple ERC20 Token mock for testing the MerkleDistributor
+ * @dev A simple ERC20 Token mock for testing the MerkleDistributor & StakingVault
  */
 contract MockERC20 is ERC20 {
     constructor(
