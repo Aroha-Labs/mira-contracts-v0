@@ -67,12 +67,12 @@ contract AppRegistryV0 {
     }
 
     /**
-     * @dev Check if an app ID is registered and active
+     * @dev Check if an app ID is active
      * @param appId The app ID to check
      * @return bool True if the app is registered and active
      */
     function isAppActive(string memory appId) external view returns (bool) {
-        return appRegistry[appId].isActive && appRegistry[appId].registrationBlock > 0;
+        return appRegistry[appId].isActive;
     }
 
     /**
