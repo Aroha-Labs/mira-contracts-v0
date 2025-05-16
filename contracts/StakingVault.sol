@@ -18,16 +18,19 @@ contract StakingVault is ERC4626 {
 
     /**
      * @dev Constructor for the StakingVault
-     * @param _asset The address of the underlying asset to be staked
+     * @param _assetAddress The address of the underlying asset to be staked
      * @param _name The name of the vault token
      * @param _symbol The symbol of the vault token
      */
     constructor(
-        IERC20 _asset,
+        address _assetAddress,
         string memory _name,
         string memory _symbol
-    ) ERC20(_name, _symbol) ERC4626(_asset) {
+    ) ERC20(_name, _symbol) ERC4626(IERC20(_assetAddress)) {
         DEPLOYER = msg.sender;
+
+        // require _asset has 18 decimals
+        require(ERC20(_assetAddress).decimals() == 18, "Asset must have 18 decimals");
     }
     
     /**
