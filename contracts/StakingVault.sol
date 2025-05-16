@@ -42,13 +42,13 @@ contract StakingVault is ERC4626 {
         require(msg.sender == DEPLOYER, "Only deployer");
         require(initialAmount >= MIN_DEPOSIT_AMOUNT, "Initial deposit too small");
         
+        initialized = true;
+
         // Ensure deployer has approved the contract to spend tokens
-        require(IERC20(asset()).transferFrom(msg.sender, address(this), initialAmount), "Transfer failed");
-        
+        SafeERC20.safeTransferFrom(IERC20(asset()), msg.sender, address(this), initialAmount);    
+
         // Mint fixed amount of shares to dead address
         _mint(address(1), MIN_DEPOSIT_SHARES);
-        
-        initialized = true;
     }
     
     /**

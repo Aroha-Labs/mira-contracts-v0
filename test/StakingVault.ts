@@ -81,10 +81,18 @@ import {
   
     describe("Initialization", function () {
       it("Should initialize successfully with sufficient deposit", async function () {
-        const { stakingVault, initialDeposit } = await loadFixture(deployStakingVaultFixture);
+        const { stakingVault, initialDeposit, mockToken } = await loadFixture(deployStakingVaultFixture);
         
         await expect(stakingVault.write.initialize([initialDeposit])).to.be.fulfilled;
         expect(await stakingVault.read.initialized()).to.equal(true);
+
+        // Verify that the StakingVault's balance matches the initial deposit
+        const vaultBalance = await mockToken.read.balanceOf([stakingVault.address]);
+        expect(vaultBalance).to.equal(initialDeposit);
+        
+        // Verify that the total supply of the vault's shares is greater than zero
+        const totalSupply = await stakingVault.read.totalSupply();
+        expect(totalSupply > 0n).to.be.true;
       });
   
       it("Should fail to initialize with insufficient deposit", async function () {
