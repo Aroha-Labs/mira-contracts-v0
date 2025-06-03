@@ -61,3 +61,9 @@ Run:
         --network <network> \
         --parameters ignition/modules/parameters.json \
         --verify
+
+# Transfer ownership
+
+Call this foundry command to transfer ownership of a contract:
+
+    cast send <contract> "transferAdmin(address)" <new admin> --rpc-url https://voyager-rpc-testnet.appchain.base.org
